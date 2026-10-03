@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
-import * as Notifications from 'expo-notifications';
+import type * as NotificationsModule from 'expo-notifications';
 import * as Device from 'expo-device';
-import Constants from 'expo-constants';
+import Constants, { ExecutionEnvironment } from 'expo-constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { api } from './client';
@@ -11,8 +11,15 @@ import { openSite } from './links';
 // Admin panelinden gönderilen kampanya bildirimleri ve sipariş durumu bildirimleri bu adrese gelir.
 const KEY = 'kkgo:push-token';
 
+// Android'deki Expo Go (SDK 53+) anlık bildirim modülünü içermez; orada yüklenirse modülü kullanan ekranlar açılmaz.
+// Bu yüzden Expo Go'da bildirimler kapalı çalışır; gerçek build'de (Play Store / App Store) her şey normaldir.
+const Notifications: typeof NotificationsModule | null =
+  Platform.OS === 'android' && Constants.executionEnvironment === ExecutionEnvironment.StoreClient
+    ? null
+    : require('expo-notifications'); // eslint-disable-line @typescript-eslint/no-require-imports
+
 // Uygulama açıkken gelen bildirim de ekranın üstünde gösterilir
-Notifications.setNotificationHandler({
+Notifications?.setNotificationHandler({
   handleNotification: async () => ({ shouldShowBanner: true, shouldShowList: true, shouldPlaySound: true, shouldSetBadge: false }),
 });
 
@@ -21,14 +28,14 @@ export const getSavedPushToken = () => AsyncStorage.getItem(KEY).catch(() => nul
 export type PermissionState = 'granted' | 'denied' | 'undetermined' | 'unsupported';
 
 export async function permissionState(): Promise<PermissionState> {
-  if (Platform.OS === 'web' || !Device.isDevice) return 'unsupported';
+  if (!Notifications || Platform.OS === 'web' || !Device.isDevice) return 'unsupported';
   const { status } = await Notifications.getPermissionsAsync();
   return status as PermissionState;
 }
 
 // İzin ister (gerekirse), push adresini alır ve sunucuya kaydeder. authToken varsa cihaz kullanıcıya bağlanır.
 export async function registerPush(authToken: string | null, ask = true): Promise<string | null> {
-  if (Platform.OS === 'web' || !Device.isDevice) return null;
+  if (!Notifications || Platform.OS === 'web' || !Device.isDevice) return null;
   try {
     if (Platform.OS === 'android') {
       await Notifications.setNotificationChannelAsync('default', {
@@ -73,8 +80,8 @@ export function openTarget(url: string) {
 
 // Kök düzende bir kez çağrılır: dokunulan bildirimi (uygulama kapalıyken açılanlar dahil) ilgili sayfaya yönlendirir
 export function listenNotificationTaps() {
-  if (Platform.OS === 'web') return () => {};
-  const handle = (r: Notifications.NotificationResponse | null) => {
+  if (!Notifications || Platform.OS === 'web') return () => {};
+  const handle = (r: NotificationsModule.NotificationResponse | null) => {
     const url = r?.notification.request.content.data?.url;
     if (typeof url === 'string') setTimeout(() => openTarget(url), 300);
   };

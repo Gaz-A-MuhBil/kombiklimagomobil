@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "67410900943",
+    "project_id": "gazamuhendislik-8954e",
+    "storage_bucket": "gazamuhendislik-8954e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67410900943:android:eb538a2282af034f02c4ba",
+        "android_client_info": {
+          "package_name": "com.gaza.muhendislik"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9WYogBYzles7i_1Cvug3QZY2RcwyI9g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67410900943:android:86460ac7419256ee02c4ba",
+        "android_client_info": {
+          "package_name": "com.kombiklimago.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9WYogBYzles7i_1Cvug3QZY2RcwyI9g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
