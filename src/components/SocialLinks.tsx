@@ -4,9 +4,9 @@ import * as Haptics from 'expo-haptics';
 import { colors, radius } from '../theme';
 
 const socials = [
-  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/gazabilisim' },
-  { icon: 'x-twitter', label: 'X (Twitter)', href: 'https://x.com/gazabilisim' },
-  { icon: 'linkedin-in', label: 'LinkedIn', href: 'https://www.linkedin.com/company/gaza-bili%C5%9Fim/' },
+  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/kombiklimago' },
+  { icon: 'x-twitter', label: 'X (Twitter)', href: 'https://x.com/kombiklimago' },
+  { icon: 'linkedin-in', label: 'LinkedIn', href: 'https://www.linkedin.com/company/kombi-klima-go/' },
 ] as const;
 
 export function SocialLinks() {
