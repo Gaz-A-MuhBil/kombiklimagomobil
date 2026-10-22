@@ -224,7 +224,7 @@ const s = StyleSheet.create({
   toggleText: { color: colors.text, fontSize: 14.5 },
   priceRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   price: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', height: 44, paddingHorizontal: 12, borderRadius: radius, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-  priceInput: { flex: 1, minWidth: 0, width: '100%', color: colors.text, fontSize: 15, paddingVertical: 0 },
+  priceInput: { flex: 1, width: 0, minWidth: 0, color: colors.text, fontSize: 15, paddingVertical: 0 },
   sortRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 52, paddingHorizontal: 12, borderRadius: radius },
   sortText: { color: colors.text, fontSize: 15 },
 });
