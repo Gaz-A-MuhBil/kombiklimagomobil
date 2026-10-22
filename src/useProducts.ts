@@ -4,7 +4,8 @@ import { API_URL, absolute } from './api';
 import { products as sample } from './data';
 import type { Product } from './store/cart';
 
-type ApiProduct = { id: string; slug: string; name: string; brand: string; category: string; price: number; oldPrice: number | null; inStock: boolean; imageUrl: string | null };
+type ApiProduct = { id: string; slug: string; name: string; brand: string; category: string; price: number; oldPrice: number | null; inStock: boolean; imageUrl: string | null;
+  productGroup?: string | null; specs?: Record<string, string> | null };
 
 // Ürünler web sitesindeki /api/products ucundan bir kez okunur ve tüm ekranlarca paylaşılır
 const useStore = create<{ products: Product[]; loading: boolean; started: boolean; load: () => void }>((set, get) => ({
@@ -18,7 +19,8 @@ const useStore = create<{ products: Product[]; loading: boolean; started: boolea
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((rows: ApiProduct[]) =>
         set({
-          products: rows.map((r) => ({ id: r.id, slug: r.slug, name: r.name, brand: r.brand, category: r.category, price: r.price, oldPrice: r.oldPrice, inStock: r.inStock, imageUrl: absolute(r.imageUrl) })),
+          products: rows.map((r) => ({ id: r.id, slug: r.slug, name: r.name, brand: r.brand, category: r.category, price: r.price, oldPrice: r.oldPrice, inStock: r.inStock, imageUrl: absolute(r.imageUrl),
+            productGroup: r.productGroup ?? null, specs: r.specs ?? {} })),
         })
       )
       .catch(() => set({ started: false })) // hata olursa örnek veri kalır, sonraki açılışta yeniden denenir

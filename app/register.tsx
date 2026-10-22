@@ -49,7 +49,7 @@ export default function Register() {
           </View>
           <Field label="E-posta" value={f.email} onChangeText={set('email')} placeholder="ornek@eposta.com" keyboardType="email-address"
             autoCapitalize="none" autoComplete="email" textContentType="emailAddress" />
-          <Field label="Telefon" value={f.phone} onChangeText={set('phone')} placeholder="05xx xxx xx xx" keyboardType="phone-pad" autoComplete="tel" textContentType="telephoneNumber" />
+          <Field label="Telefon (isteğe bağlı)" value={f.phone} onChangeText={set('phone')} placeholder="05xx xxx xx xx" keyboardType="phone-pad" autoComplete="tel" textContentType="telephoneNumber" />
           <Field label="Parola" value={f.password} onChangeText={set('password')} secure hint="En az 8 karakter" autoComplete="new-password" textContentType="newPassword" />
 
           <Check checked={newsletter} onChange={setNewsletter}>

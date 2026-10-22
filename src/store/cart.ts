@@ -12,6 +12,8 @@ export type Product = {
   oldPrice: number | null;
   inStock: boolean;
   imageUrl?: string | null;
+  productGroup?: string | null;
+  specs?: Record<string, string>; // admin panelindeki teknik özellikler; filtrelerde kullanılır
 };
 type CartItem = Product & { qty: number };
 

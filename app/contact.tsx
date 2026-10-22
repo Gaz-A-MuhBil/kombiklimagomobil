@@ -106,8 +106,8 @@ export default function Contact() {
             </View>
             <ErrorBox text={error} />
             <Field label="Ad Soyad" value={f.fullName} onChangeText={set('fullName')} autoComplete="name" textContentType="name" />
-            <Field label="Telefon" value={f.phone} onChangeText={set('phone')} placeholder="05xx xxx xx xx" keyboardType="phone-pad" autoComplete="tel" />
-            <Field label="E-posta (isteğe bağlı)" value={f.email} onChangeText={set('email')} keyboardType="email-address" autoCapitalize="none" autoComplete="email" />
+            <Field label="Telefon" hint="Size dönebilmemiz için telefon veya e-postadan birini yazmanız yeterli." value={f.phone} onChangeText={set('phone')} placeholder="05xx xxx xx xx" keyboardType="phone-pad" autoComplete="tel" />
+            <Field label="E-posta" value={f.email} onChangeText={set('email')} keyboardType="email-address" autoCapitalize="none" autoComplete="email" />
             <Field label="Mesajınız" value={f.message} onChangeText={set('message')} multiline numberOfLines={5} placeholder="Size nasıl yardımcı olabiliriz?" />
             <Check checked={kvkk} onChange={setKvkk}>
               <Text style={link} onPress={() => router.push({ pathname: '/page/[slug]', params: { slug: 'kvkk-aydinlatma-metni' } })}>KVKK Aydınlatma Metni</Text>’ni okudum; mesajım için benimle iletişime geçilmesini kabul ediyorum.
