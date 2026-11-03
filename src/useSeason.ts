@@ -4,8 +4,8 @@ import { API_URL } from './api';
 // Mevsime göre kategori sırası (sitedeki admin → Mevsim Sıralaması ile aynı).
 // Sunucuya ulaşılamazsa takvime göre yerel sıra kullanılır: Eylül–Mart ısıtma, Nisan–Ağustos soğutma.
 const LOCAL = {
-  isitma: ['Kombi', 'Radyatör', 'Isı Pompası', 'Oda Termostatı', 'Sirkülasyon Pompası', 'Şofben', 'Klima'],
-  sogutma: ['Klima', 'Isı Pompası', 'Şofben', 'Kombi', 'Radyatör', 'Oda Termostatı', 'Sirkülasyon Pompası'],
+  isitma: ['Kombi', 'Radyatör', 'Isı Pompası', 'Kazan', 'Oda Termostatı', 'Sirkülasyon Pompası', 'Şofben', 'Klima'],
+  sogutma: ['Klima', 'Isı Pompası', 'Şofben', 'Kombi', 'Radyatör', 'Kazan', 'Oda Termostatı', 'Sirkülasyon Pompası'],
 };
 const month = new Date().getMonth() + 1;
 const localSeason = month >= 4 && month <= 8 ? 'sogutma' : 'isitma';
@@ -26,6 +26,6 @@ export function loadSeason() {
 // Başlıklarda kullanılan çoğul adlar
 const PLURAL: Record<string, string> = {
   Kombi: 'Kombiler', Klima: 'Klimalar', Radyatör: 'Radyatörler', 'Isı Pompası': 'Isı Pompaları',
-  'Oda Termostatı': 'Oda Termostatları', 'Sirkülasyon Pompası': 'Sirkülasyon Pompaları', Şofben: 'Şofbenler',
+  'Oda Termostatı': 'Oda Termostatları', 'Sirkülasyon Pompası': 'Sirkülasyon Pompaları', Şofben: 'Şofbenler', Kazan: 'Kazanlar',
 };
 export const plural = (c: string) => PLURAL[c] ?? c;

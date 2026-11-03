@@ -13,6 +13,7 @@ export const CATEGORY_ICONS: Record<string, Icon> = {
   'Sirkülasyon Pompası': 'pump',
   Şofben: 'water-thermometer',
   Termosifon: 'water-boiler-auto',
+  Kazan: 'factory',
 };
 
 export const iconFor = (c: string): Icon => CATEGORY_ICONS[c] ?? 'shape-outline';
